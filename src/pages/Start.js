@@ -125,34 +125,76 @@ const [reportText, setReportText] = useState("");
   };
 
   // Submit
-  const handleSubmit = () => {
-    const allQuestions = Object.keys(questionsBySubject)
-      .map((sub) =>
-        questionsBySubject[sub].map((q, i) => ({
-          ...q,
-          subject: sub,
-          localIndex: i,
-          key: `${sub}-${i}`
-        }))
-      )
-      .flat();
+  // const handleSubmit = () => {
+  //   const allQuestions = Object.keys(questionsBySubject)
+  //     .map((sub) =>
+  //       questionsBySubject[sub].map((q, i) => ({
+  //         ...q,
+  //         subject: sub,
+  //         localIndex: i,
+  //         key: `${sub}-${i}`
+  //       }))
+  //     )
+  //     .flat();
 
-    let correctAnswers = 0;
+  //   let correctAnswers = 0;
 
-    allQuestions.forEach((q) => {
-      const userAnswer = answers[`${q.subject}-${q.localIndex}`];
-      const correctAnswer = q.Answer?.replace(/<[^>]*>/g, "").trim();
+  //   allQuestions.forEach((q) => {
+  //     const userAnswer = answers[`${q.subject}-${q.localIndex}`];
+  //     const correctAnswer = q.Answer?.replace(/<[^>]*>/g, "").trim();
 
-      if (userAnswer && userAnswer === correctAnswer) correctAnswers++;
+  //     if (userAnswer && userAnswer === correctAnswer) correctAnswers++;
+  //   });
+
+  //   navigate("/performance-history", {
+  //     state: {
+  //       questions: allQuestions,
+  //       answers
+  //     }
+  //   });
+  // };
+const handleSubmit = () => {
+  const allQuestions = Object.keys(questionsBySubject)
+    .map((sub) =>
+      questionsBySubject[sub].map((q, i) => ({
+        ...q,
+        subject: sub,
+        localIndex: i,
+        key: `${sub}-${i}`
+      }))
+    )
+    .flat();
+
+  let correctAnswers = 0;
+
+  allQuestions.forEach((q) => {
+    const userAnswer = answers[`${q.subject}-${q.localIndex}`];
+    const correctAnswer = q.Answer?.replace(/<[^>]*>/g, "").trim();
+
+    if (userAnswer && userAnswer === correctAnswer) correctAnswers++;
+  });
+
+  // Grab active profile and exam ID
+  const activeProfileId = localStorage.getItem("activeProfileId");
+  const examId = localStorage.getItem("activeExamId"); // or wherever you store exam ID
+
+  if (activeProfileId && examId) {
+    // Save exam result
+    window.api.saveExamResult({
+      profileId: parseInt(activeProfileId),
+      examId: parseInt(examId),
+      score: correctAnswers
     });
+  }
 
-    navigate("/performance-history", {
-      state: {
-        questions: allQuestions,
-        answers
-      }
-    });
-  };
+  // Navigate to performance history
+  navigate("/performance-history", {
+    state: {
+      questions: allQuestions,
+      answers
+    }
+  });
+};
 
   const handleLogout = () => {
     logout();

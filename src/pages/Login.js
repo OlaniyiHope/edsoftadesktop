@@ -31,8 +31,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { login } = useAuth();
-const { loginUser } = useContext(AuthContext); // 👈 ADD THIS
+//   const { login } = useAuth();
+// const { loginUser } = useContext(AuthContext); // 👈 ADD THIS
 
   const apiUrl = process.env.REACT_APP_API_URL;
   // const handleFormSubmit = async (values) => {
@@ -61,18 +61,33 @@ const { loginUser } = useContext(AuthContext); // 👈 ADD THIS
 //     setLoading(false);
 //   }
 // };
+// const handleFormSubmit = async (values) => {
+//   setLoading(true);
+//   try {
+//     const loggedInUser = await login(values.email, values.password);
+
+//     // ✅ update context state
+//     loginUser(loggedInUser);
+
+//     toast.success("Login successful!");
+//     navigate("/dashboard");
+//   } catch (e) {
+//     toast.error("An error occurred during login.");
+//     setLoading(false);
+//   }
+// };
+const { login } = useAuth(); // Electron login
+const { loginUser } = useContext(AuthContext); // React state
+
 const handleFormSubmit = async (values) => {
   setLoading(true);
   try {
-    const loggedInUser = await login(values.email, values.password);
-
-    // ✅ update context state
-    loginUser(loggedInUser);
-
+    const loggedInUser = await login(values.email, values.password); // Electron
+    loginUser(loggedInUser); // Update AuthContext state
     toast.success("Login successful!");
     navigate("/dashboard");
   } catch (e) {
-    toast.error("An error occurred during login.");
+    toast.error(e.message || "Login failed");
     setLoading(false);
   }
 };
