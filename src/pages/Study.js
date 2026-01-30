@@ -16,6 +16,7 @@ import AddUser from "./AddUser";
 import "./admin.css";
 import { useSidebar } from "./SidebarProvider";
 import { useNavigate } from "react-router-dom";
+import SideNav from "./SideNav";
 const Study = () => {
   const { user } = useAuth(); // Access the authenticated user
   const [points, setPoints] = useState([]);
@@ -31,37 +32,7 @@ const toggleTerm = (term) => {
  return (
   <div className="dashboard">
     {/* SIDEBAR — 20% */}
-    <aside className="sidebar">
-      <div className="profile">
-        <div className="avatar" />
-        <div className="bell">
-          <FaBell />
-          <span className="badge">23</span>
-        </div>
-      </div>
-
-      <nav>
-        <button className="active"  onClick={() => navigate("/dashboard")}>
-          <FaHome /> Home
-        </button>
-        <button>
-          <FaStickyNote /> Notes
-        </button>
-        <button>
-          <FaNewspaper /> News
-        </button>
-        <button>
-          <FaCog /> Settings
-        </button>
-      </nav>
-
-
-<AddUser
-  open={showModal}
-  onClose={() => setShowModal(false)}
-/>
-
-    </aside>
+     <SideNav />
 
  <main className="bodys">
   <header className="headers">

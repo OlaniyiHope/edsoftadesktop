@@ -34,6 +34,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import Note from "./pages/Note";
 import Settings from "./pages/Settings";
 import ManageUser from "./pages/ManageUser";
+import Year from "./pages/Year";
 
 
 
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="/activate" element={<Activate />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/topic" element={<Topic />} />
+            <Route path="/year" element={<Year />} />
             <Route path="/manage-user" element={<ManageUser />} />
           <Route path="/about" element={<About />} />
           <Route path="/service" element={<Services />} />

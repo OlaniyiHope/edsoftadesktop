@@ -3,6 +3,7 @@ import { MdDownload, MdLightbulb } from "react-icons/md";
 import { useState } from "react";
 import AddUser from "./AddUser";
 import "./admin.css";
+import SideNav from "./SideNav";
 
 const notificationsData = [
   {
@@ -46,32 +47,7 @@ const AllNoti = () => {
   return (
     <div className="dashboard">
       {/* SIDEBAR */}
-      <aside className="sidebar">
-        <div className="profile">
-          <div className="avatar" />
-          <div className="bell">
-            <FaBell />
-            <span className="badge">{notifications.length}</span>
-          </div>
-        </div>
-
-        <nav>
-          <button className="active">
-            <FaHome /> Home
-          </button>
-          <button>
-            <FaStickyNote /> Notes
-          </button>
-          <button>
-            <FaNewspaper /> News
-          </button>
-          <button>
-            <FaCog /> Settings
-          </button>
-        </nav>
-
-        <AddUser open={showModal} onClose={() => setShowModal(false)} />
-      </aside>
+      <SideNav />
 
       {/* MAIN */}
       <main className="bodys">

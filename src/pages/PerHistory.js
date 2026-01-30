@@ -177,6 +177,7 @@ import {
 import AddUser from "./AddUser";
 import "./admin.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import SideNav from "./SideNav";
 
 const PerHistory = () => {
   const location = useLocation();
@@ -229,32 +230,7 @@ const PerHistory = () => {
   return (
     <div className="dashboard">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="profile">
-          <div className="avatar" />
-          <div className="bell">
-            <FaBell />
-            <span className="badge">23</span>
-          </div>
-        </div>
-
-        <nav>
-          <button className="active"  onClick={() => navigate("/dashboard")} >
-            <FaHome /> Home
-          </button>
-          <button>
-            <FaStickyNote /> Notes
-          </button>
-          <button>
-            <FaNewspaper /> News
-          </button>
-          <button>
-            <FaCog /> Settings
-          </button>
-        </nav>
-
-        <AddUser open={false} onClose={() => {}} />
-      </aside>
+    <SideNav />
 
       {/* Main */}
       <main className="bodys">

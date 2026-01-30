@@ -10,6 +10,7 @@ import {
 import AddUser from "./AddUser";
 import "./admin.css";
 import { useNavigate } from "react-router-dom";
+import SideNav from "./SideNav";
 
 const ResultHistory = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,25 +18,7 @@ const ResultHistory = () => {
   return (
     <div className="dashboard">
       {/* SIDEBAR */}
-      <aside className="sidebar">
-        <div className="profile">
-          <div className="avatar" />
-          <div className="bell">
-            <FaBell />
-            <span className="badge">23</span>
-          </div>
-        </div>
-
-        <nav>
-          <button className="active" onClick={() => navigate("/dashboard")}><FaHome /> Home</button>
-          <button><FaStickyNote /> Notes</button>
-          <button><FaNewspaper /> News</button>
-          <button><FaCog /> Settings</button>
-        </nav>
-
-        <AddUser open={showModal} onClose={() => setShowModal(false)} />
-      </aside>
-
+      <SideNav />
       {/* MAIN */}
       <main className="bodys">
         <header className="headers result-header">

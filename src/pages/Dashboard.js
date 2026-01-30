@@ -28,6 +28,7 @@ import searchIcon from "./practiceicon/p5.png";
 import joinIcon from "./practiceicon/p6.png";
 import forumIcon from "./practiceicon/p7.png";
 import { AuthContext } from "../contexts/AuthContext";
+import SideNav from "./SideNav";
 
 
 const Dashboard = () => {
@@ -163,74 +164,7 @@ useEffect(() => {
  return (
   <div className="dashboard">
     {/* SIDEBAR — 20% */}
-    <aside className="sidebar">
-   <div className="profile" onClick={() => setOpen(!open)}>
-        <div className="avatar" />
-          <div className="dropdown-section">
-            <strong>{user?.username}</strong>
-            {/* <small>{user?.email}</small> */}
-          </div>
-        <div className="bell">
-          <FaBell />
-          <span className="badge">23</span>
-        </div>
-        <FaChevronDown className={`chevron ${open ? "rotate" : ""}`} />
-      </div>
-
-      {/* DROPDOWN */}
-      {open && (
-        <div className="profile-dropdown">
-          {/* OWNER */}
-        
-
-          {/* PROFILES */}
-          <div className="dropdown-section">
-            {profiles.map((p) => (
-              <div key={p.id} className="dropdown-item">
-                <FaUserCircle />
-                <span>{p.display_name}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* MANAGE USERS */}
-          <button
-            className="manage-users-btn"
-            onClick={() => {
-              setOpen(false);
-              navigate("/manage-user");
-            }}
-          >
-            <FaUsers />
-            Manage Users
-          </button>
-        </div>
-      )}
-    
-
-      <nav>
-        <button className="active"    onClick={() => navigate("/dashboard")}>
-          <FaHome /> Home
-        </button>
-        <button   onClick={() => navigate("/note")}>
-          <FaStickyNote /> Notes
-        </button>
-     <button onClick={() => setShowNewsModal(true)}>
-  <FaNewspaper /> News
-</button>
-
-        <button onClick={() => navigate("/settings")}>
-          <FaCog /> Settings
-        </button>
-      </nav>
-
-
-<AddUser
-  open={showModal}
-  onClose={() => setShowModal(false)}
-/>
-
-    </aside>
+ <SideNav />
 
     {/* BODY — 80% */}
     <main className="bodys">
@@ -328,7 +262,7 @@ useEffect(() => {
 
 
 
-        {/* RIGHT — 40% */}
+        
         <aside className="right-section">
           <div className="promo-card">
             <div className="circle">SSCE</div>
@@ -345,9 +279,14 @@ useEffect(() => {
               You scored a total of <strong>30/100</strong> in Physics,
               Chemistry & Mathematics
             </p>
-            <button className="outline-btn">
-              View result history
-            </button>
+     <button
+  className="outline-btn"
+  onClick={() => navigate("/history")}
+>
+  View result history
+</button>
+
+
           </div>
         </aside>
       </div>

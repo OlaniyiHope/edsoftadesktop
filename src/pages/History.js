@@ -15,46 +15,18 @@ import useAuth from "../hooks/useAuth";
 import AddUser from "./AddUser";
 import "./admin.css";
 import { useSidebar } from "./SidebarProvider";
+import SideNav from "./SideNav";
+import { useNavigate } from "react-router-dom";
 const History = () => {
   const { user } = useAuth(); // Access the authenticated user
   const [points, setPoints] = useState([]);
   const { isSidebarOpen } = useSidebar(); // use context to get sidebar state
   const [showModal, setShowModal] = useState(false);
-
+  const navigate = useNavigate();
  return (
   <div className="dashboard">
     {/* SIDEBAR — 20% */}
-    <aside className="sidebar">
-      <div className="profile">
-        <div className="avatar" />
-        <div className="bell">
-          <FaBell />
-          <span className="badge">23</span>
-        </div>
-      </div>
-
-      <nav>
-        <button className="active">
-          <FaHome /> Home
-        </button>
-        <button>
-          <FaStickyNote /> Notes
-        </button>
-        <button>
-          <FaNewspaper /> News
-        </button>
-        <button>
-          <FaCog /> Settings
-        </button>
-      </nav>
-
-
-<AddUser
-  open={showModal}
-  onClose={() => setShowModal(false)}
-/>
-
-    </aside>
+    <SideNav />
 <main className="bodys">
   <header className="headers">
     <div>
@@ -80,8 +52,7 @@ const History = () => {
     <button
       className="start-practice-btn"
       onClick={() => {
-        // navigate to practice page
-        // example: navigate("/practice")
+        navigate("/topic")
         console.log("Start Practicing");
       }}
     >

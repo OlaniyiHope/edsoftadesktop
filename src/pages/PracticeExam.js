@@ -12,6 +12,7 @@ import {
 import "./admin.css";
 import { useNavigate } from "react-router-dom";
 import imgg from "./practiceicon/p1.png";
+import SideNav from "./SideNav";
 const PracticeExam = () => {
   const [withTimer, setWithTimer] = useState(true);
   const [hours, setHours] = useState(30);
@@ -21,29 +22,7 @@ const PracticeExam = () => {
   return (
     <div className="dashboard">
       {/* SIDEBAR */}
-      <aside className="sidebar">
-        <div className="sidebar-top">
-          <div className="avatar" />
-          <div className="bell">
-            <FaBell />
-            <span className="badge">23</span>
-          </div>
-        </div>
-
-        <nav className="sidebar-nav">
-          <button className="active"  onClick={() => navigate("/dashboard")}><FaHome /> Home</button>
-          <button><FaStickyNote /> Notes</button>
-          <button><FaNewspaper /> News</button>
-          <button><FaCog /> Settings</button>
-            <button className="add-user">
-          <FaPlus /> Add User
-          <small>4 users added</small>
-        </button>
-        </nav>
-
-      
-      </aside>
-
+      <SideNav />
       {/* MAIN BODY */}
       <main className="body">
         <h1 className="page-title">Practice Exam</h1>
@@ -129,7 +108,7 @@ const PracticeExam = () => {
               2. Select subjects, number and year of previous questions of your choice.
             </p>
 
-            <button className="primary-btn outline"       style={{backgroundColor: "#0366D6", color: "white"}}>Practice by Year</button>
+            <button className="primary-btn outline"       style={{backgroundColor: "#0366D6", color: "white"}}    onClick={() => navigate("/year")}>Practice by Year</button>
           </aside>
         </div>
       </main>
